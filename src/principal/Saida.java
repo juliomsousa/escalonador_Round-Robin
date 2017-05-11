@@ -1,10 +1,10 @@
 package principal;
 
-import java.util.ArrayList;
+import estruturasdedados.ArrayDinamico;
 
 public class Saida {
 
-    private ArrayList<Processo> p = new ArrayList<>();
+    private ArrayDinamico p = new ArrayDinamico();
     private String PID;
     private int duracao;
     private int chegada;
@@ -20,16 +20,16 @@ public class Saida {
         this.duracao = processo.getDur();
         this.chegada = processo.getChegada();
         Processo pr;
-        p.add(new Processo(PID, duracao, chegada, io));
+        p.set(new Processo(PID, duracao, chegada, io));
 
     }
 
     public void printSaida() {
-        for (int i = 0; i < p.size(); i++) {
+        for (int i = 0; i < p.tamanho(); i++) {
             System.out.print(i + "\t|");
         }
         System.out.println();
-        for (int i = 0; i < p.size(); i++) {
+        for (int i = 0; i < p.tamanho(); i++) {
             System.out.print(p.get(i).getPID() + "\t|");
             //System.out.print(i + " - " + p.get(i).getPID() + " t: " + p.get(i).getDur());
         }
