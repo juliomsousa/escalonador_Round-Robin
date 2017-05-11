@@ -23,7 +23,7 @@ public class Principal {
     public static void main(String[] args) throws IOException {
 
         // ler arquivo de processos
-        LeitorArquivo arquivo = new LeitorArquivo("C:\\Users\\Julio\\Desktop\\p2.txt");
+        LeitorArquivo arquivo = new LeitorArquivo("p2.txt");
         Processo[] p = arquivo.ler();
 
         // passar os processos para o escalonador

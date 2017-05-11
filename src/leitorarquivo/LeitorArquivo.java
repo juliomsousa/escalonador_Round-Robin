@@ -31,9 +31,8 @@ public class LeitorArquivo {
                 throw new LeituraArquivoException("Formato Invalido");
             }
             while (line != null) {
-                // "," ou ";" de acordo com o arquivo
-                String[] row = new String[4];
-                row = line.split(";");
+
+                String[] row = line.split(";");
                 if (row[3].equals("null")) {
                     row[3] = "-1";
                 }
@@ -43,7 +42,6 @@ public class LeitorArquivo {
                 for (int i = 0; i < io.length; i++) {
                     io[i] = Integer.parseInt(ioString[i]);
                 }
-                //System.out.println(row[0] + " - " + row[1] + " - " + row[2] + " - " + Arrays.toString(io));
 
                 p = new Processo(row[0], Integer.parseInt(row[1]), Integer.parseInt(row[2]), io);
                 array.set(p);
