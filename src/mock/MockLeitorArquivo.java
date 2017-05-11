@@ -1,5 +1,6 @@
 package mock;
 
+import estruturasdedados.ArrayDinamico;
 import principal.Processo;
 
 // classe para simular o recebimento dos processos através de um arquivo
@@ -33,8 +34,20 @@ public class MockLeitorArquivo {
 
     //implementar metodo para ler arquivo e transforma-los em objetos
     private Processo[] lerArquivo() {
-        Processo[] processos = {p1, p2, p3, p4, p5};
+        ArrayDinamico array = new ArrayDinamico();
+        
+        array.set(p1);
+        array.set(p2);
+        array.set(p3);
+        array.set(p4);
+        array.set(p5);
+        
+        Processo[] processos = new Processo[array.tamanho()];
 
+        for(int i = 0; i < array.tamanho(); i++) {
+            processos[i] = array.get(i);
+        }
+        
         return processos;
     }
 }

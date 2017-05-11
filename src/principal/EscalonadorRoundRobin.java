@@ -1,15 +1,15 @@
 package principal;
 
-import filas.FilaProcessos;
+import estruturasdedados.FilaProcessos;
 
-public class Escalonador {
+public class EscalonadorRoundRobin {
 
     private Processo[] lista = null;
     private int quantum = 0;
     private FilaProcessos fila = null;
     private final int duracao;
 
-    public Escalonador(Processo[] processos, int quantum) {
+    public EscalonadorRoundRobin(Processo[] processos, int quantum) {
         this.lista = processos;
         this.quantum = quantum;
         fila = new FilaProcessos(lista.length);

@@ -1,5 +1,7 @@
 package principal;
 
+import java.util.Arrays;
+
 public class Processo {
     
     private String PID;
@@ -42,7 +44,7 @@ public class Processo {
 
     @Override
     public String toString() {
-        //return "Processo{" + "PID = " + PID + ", duracao = " + duracao + ", chegada = " + chegada + '}';
+        //return "Processo{" + "PID = " + PID + ", duracao = " + duracao + ", chegada = " + chegada + ", I/O = " + Arrays.toString(io) +'}';
         return PID + "(" + duracao + ")";
     }
 

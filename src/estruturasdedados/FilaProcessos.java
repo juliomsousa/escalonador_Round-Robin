@@ -1,4 +1,4 @@
-package filas;
+package estruturasdedados;
 
 import principal.Processo;
 

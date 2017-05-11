@@ -1,10 +1,11 @@
-package principal;
+package leitorarquivo;
 
+import estruturasdedados.ArrayDinamico;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import principal.Processo;
 
 public class LeitorArquivo {
 
@@ -14,16 +15,15 @@ public class LeitorArquivo {
         this.endereco = endereco;
     }
 
-    //implementar metodo para ler arquivo e transforma-los em objetos
     public Processo[] ler() throws LeituraArquivoException {
         BufferedReader br = null;
         Processo p;
-        ArrayList<Processo> array = new ArrayList<>();
-        
+        ArrayDinamico array = new ArrayDinamico();
+
         try {
             br = new BufferedReader(new FileReader(endereco));
             String line = br.readLine();
-            
+
             if (line == null) {
                 throw new LeituraArquivoException("Arquivo Vazio");
             }
@@ -32,11 +32,21 @@ public class LeitorArquivo {
             }
             while (line != null) {
                 // "," ou ";" de acordo com o arquivo
-                String[] row = line.split(";");
-                //System.out.println(row[0] + " - " + row[1] + " - " + row[2]);
-                
-                p = new Processo(row[0], Integer.parseInt(row[1]), Integer.parseInt(row[2]), null); // substiuir null por array de io
-                array.add(p);
+                String[] row = new String[4];
+                row = line.split(";");
+                if (row[3].equals("null")) {
+                    row[3] = "-1";
+                }
+
+                String[] ioString = row[3].split(",");
+                int[] io = new int[ioString.length];
+                for (int i = 0; i < io.length; i++) {
+                    io[i] = Integer.parseInt(ioString[i]);
+                }
+                //System.out.println(row[0] + " - " + row[1] + " - " + row[2] + " - " + Arrays.toString(io));
+
+                p = new Processo(row[0], Integer.parseInt(row[1]), Integer.parseInt(row[2]), io);
+                array.set(p);
                 line = br.readLine();
             }
 
@@ -47,24 +57,16 @@ public class LeitorArquivo {
         } catch (IOException e) {
             throw new LeituraArquivoException("Erro de Entrada/Saida");
         }
-        
-        Processo[] processos = new Processo[array.size()];
-        
-        for(int i = 0; i < array.size(); i++) {
+
+        Processo[] processos = new Processo[array.tamanho()];
+
+        for (int i = 0; i < array.tamanho(); i++) {
             processos[i] = array.get(i);
         }
-        
-        return processos;
-        
-    }
 
-    
-    //                Processo(PID, duracao, chegada)
-    Processo p1 = new Processo("p1", 5, 8, null);
-    Processo p2 = new Processo("p2", 12, 0, null);
-    Processo p3 = new Processo("p3", 10, 2, null);
-    Processo p4 = new Processo("p4", 7, 10, null);
-    Processo p5 = new Processo("p5", 9, 4, null);
+        return processos;
+
+    }
 
     public Processo[] getProcessos() {
         Processo[] processos = lerArquivo();
@@ -72,9 +74,8 @@ public class LeitorArquivo {
         return processos;
     }
 
-    //implementar metodo para ler arquivo e transforma-los em objetos
     private Processo[] lerArquivo() {
-        Processo[] processos = {p1, p2, p3, p4, p5};
+        Processo[] processos = null;
 
         return processos;
     }

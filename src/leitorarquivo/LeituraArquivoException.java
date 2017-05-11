@@ -1,4 +1,4 @@
-package principal;
+package leitorarquivo;
 
 class LeituraArquivoException extends RuntimeException {
 
