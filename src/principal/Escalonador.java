@@ -24,12 +24,12 @@ public class Escalonador {
         Processo cpu = null;
 
         int limite = 0;
-        System.out.println("Duração do escalonamento: " + getDuracao(lista)); // 
+        System.out.println("Duração do escalonamento: " + getDuracao(lista) + "\n"); // debug
         // para cada tempo
         do {
 
             // exibir tempo atual
-            System.out.println("Tempo " + tempo + "\n");
+            System.out.print("Tempo " + tempo + " ");
 
             // verificar lista de processos
             for (Processo proc : lista) {
@@ -51,23 +51,36 @@ public class Escalonador {
                 s.setSaida(cpu); // debug
 
                 if (cpu.getDur() != 0) {
-                    System.out.println("CPU: " + cpu.getPID() + "(" + cpu.getDur() + ")"); // debug
+
+                    // condição de I/O
+                    if (hasIo(cpu)) {
+                        System.out.println("Operação de I/O " + cpu.getPID());
+                        fila.inserir(cpu);
+                        cpu = fila.retirar();
+                        limite = quantum;
+                    }
 
                     if (!fila.isEmpty()) {
+                        System.out.println("");
                         fila.exibirFila(); // debug
                     } else {
-                        System.out.println("FILA VAZIA");
+                        System.out.println("\nFILA VAZIA");
                     }
+
+                    System.out.println("CPU: " + cpu.getPID() + "(" + cpu.getDur() + ")"); // debug
 
                     cpu.setDur(cpu.getDur() - 1);
                     limite--;
 
                     if (limite == 0 && cpu.getDur() != 0) {
+                        System.out.println("Fim do quantum " + cpu.getPID());
                         fila.inserir(cpu);
                     }
                     if (cpu.getDur() == 0) {
+                        System.out.println("Fim do processo " + cpu.getPID());
                         limite = 0;
                     }
+
                 } else {
                     limite = 0;
                 }
@@ -90,6 +103,18 @@ public class Escalonador {
         }
 
         return duracao;
+    }
+
+    private boolean hasIo(Processo p) {
+        int io = p.getTempoInicial() - p.getDur();
+
+        for (int i = 0; i < p.getIo().length; i++) {
+            if (p.getIo()[i] == io) {
+                p.ioDone(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     private void printObj(Processo p) {
