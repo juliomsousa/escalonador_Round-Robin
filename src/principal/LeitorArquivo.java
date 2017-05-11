@@ -35,7 +35,7 @@ public class LeitorArquivo {
                 String[] row = line.split(";");
                 //System.out.println(row[0] + " - " + row[1] + " - " + row[2]);
                 
-                p = new Processo(row[0], Integer.parseInt(row[1]), Integer.parseInt(row[2]));
+                p = new Processo(row[0], Integer.parseInt(row[1]), Integer.parseInt(row[2]), null); // substiuir null por array de io
                 array.add(p);
                 line = br.readLine();
             }
@@ -60,11 +60,11 @@ public class LeitorArquivo {
 
     
     //                Processo(PID, duracao, chegada)
-    Processo p1 = new Processo("p1", 5, 8);
-    Processo p2 = new Processo("p2", 12, 0);
-    Processo p3 = new Processo("p3", 10, 2);
-    Processo p4 = new Processo("p4", 7, 10);
-    Processo p5 = new Processo("p5", 9, 4);
+    Processo p1 = new Processo("p1", 5, 8, null);
+    Processo p2 = new Processo("p2", 12, 0, null);
+    Processo p3 = new Processo("p3", 10, 2, null);
+    Processo p4 = new Processo("p4", 7, 10, null);
+    Processo p5 = new Processo("p5", 9, 4, null);
 
     public Processo[] getProcessos() {
         Processo[] processos = lerArquivo();

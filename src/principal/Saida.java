@@ -8,6 +8,7 @@ public class Saida {
     private String PID;
     private int duracao;
     private int chegada;
+    private int[] io;
 
     public Saida() {
 
@@ -19,7 +20,7 @@ public class Saida {
         this.duracao = processo.getDur();
         this.chegada = processo.getChegada();
         Processo pr;
-        p.add(new Processo(PID, duracao, chegada));
+        p.add(new Processo(PID, duracao, chegada, io));
 
     }
 

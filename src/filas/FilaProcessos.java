@@ -52,14 +52,16 @@ public class FilaProcessos{
         int prim = primeiro;
         int ult = ultimo;
         int tt = total;
-
+        
+        System.out.print("FILA: ");
         while (tt != 0) {
             Processo processo = p[prim];
             prim = (prim + 1) % p.length;
             tt--;
 
-            System.out.println(processo.toString());
+            System.out.print(processo.toString() + " ");
         }
+        System.out.println("");
 
     }
 }
