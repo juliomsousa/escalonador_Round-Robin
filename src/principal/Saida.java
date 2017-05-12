@@ -14,6 +14,10 @@ public class Saida {
 
     }
 
+    public void imprimir(String s) {
+        
+    }
+    
     public void setSaida(Processo processo) {
 
         this.PID = processo.getPID();

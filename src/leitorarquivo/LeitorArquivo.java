@@ -65,16 +65,4 @@ public class LeitorArquivo {
         return processos;
 
     }
-
-    public Processo[] getProcessos() {
-        Processo[] processos = lerArquivo();
-
-        return processos;
-    }
-
-    private Processo[] lerArquivo() {
-        Processo[] processos = null;
-
-        return processos;
-    }
 }

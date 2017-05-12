@@ -1,7 +1,5 @@
 package principal;
 
-import java.util.Arrays;
-
 public class Processo {
     
     private String PID;
@@ -48,7 +46,7 @@ public class Processo {
         return PID + "(" + duracao + ")";
     }
 
-    void ioDone(int i) {
+    public void ioDone(int i) {
         this.io[i] = -1;
     }
     
